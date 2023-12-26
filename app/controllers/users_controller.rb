@@ -12,11 +12,19 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:success] = 'ユーザを登録しました。'
-      redirect_to @user
+      redirect_to root_url
     else
       flash.now[:danger] = 'ユーザの登録に失敗しました。'
       render :new
     end
+    
+  def participants
+    @user = User.find(params[:id])
+    @pagy, @events = pagy(@user.participant_events)
+    counts(@user)
+  end
+    
+    
   end
   
   

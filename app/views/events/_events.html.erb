@@ -13,6 +13,7 @@
       <p>Reservation Deadline: <%= event.deadline_time %></p>
       <p>Memo: <%= event.memo %></p>
      </li>
+     <%= link_to 'イベント詳細', event_path(event), class: 'btn btn-primary' %>
     <% end %>
   </ul>
 <% end %>

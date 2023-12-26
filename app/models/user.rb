@@ -12,5 +12,20 @@ class User < ApplicationRecord
   
   has_secure_password
   
-  has_many :events
+  has_many :participants
+  has_many :events, through: :participants
+  
+  
+  def participant(event)
+    self.participans.find_or_create_by(event_id: event.id)
+  end
+
+  def unparticipant(event)
+    participant = self.participants.find_by(event_id: event.id)
+    participant.destroy if participant
+  end
+
+  def participanted?(event)
+    self.participants.include?(event)
+  end
 end

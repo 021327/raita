@@ -1,7 +1,9 @@
 <% if logged_in? %>
+  <% if current_user.id == 1 %>
+  <p><%= link_to '新規イベント作成', new_event_path, class: 'btn btn-primary' %></p>
+  <% end %>
   <% @events.each do |event| %>
   <%= render 'events/events', events: @events %>
-  <%= link_to 'イベント詳細', event_path(event), class: 'btn btn-primary' %>
   <% end %>
 <% else %>
   <div class="bg-secondary p-3 p-sm-5 my-4 rounded">

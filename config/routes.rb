@@ -2,20 +2,23 @@ Rails.application.routes.draw do
   root to: 'toppages#index'
 
   # ログイン関連のルーティング
-  get 'login', to: 'sessions#new'    # ログインページを表示するためのGETリクエスト
-  post 'login', to: 'sessions#create' # ログイン処理を行うためのPOSTリクエスト
-  get 'logout', to: 'sessions#destroy' # ログアウト処理を行うためのGETリクエスト
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
 
   # サインアップ関連のルーティング
-  get 'signup', to: 'users#new'  # サインアップページを表示するためのGETリクエスト
-  
-  resources :users
+  get 'signup', to: 'users#new'
+
+  resources :users do
+    member do
+      get :participants
+    end
+  end
+
   resources :events do
     member do
-      get 'show'
-      get 'edit'   # イベントの編集ページを表示するためのGETリクエスト
-      patch 'update' # イベントの更新処理を行うためのPATCHリクエスト
-      delete 'destroy' # イベントの削除処理を行うためのDELETEリクエスト
+      post 'participant', to: 'participants#create'
+      delete 'unparticipant', to: 'participants#destroy'
     end
   end
 end

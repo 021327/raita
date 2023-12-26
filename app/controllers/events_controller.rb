@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :require_user_logged_in
-  #before_action :correct_user
+  before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
   
   def index
   end
@@ -30,7 +30,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.destroy
     flash[:success] = 'イベントを削除しました。'
-    redirect_to events_path
+    redirect_to root_url
   end
   
   
@@ -62,4 +62,10 @@ class EventsController < ApplicationController
       redirect_to root_url
     end
   end
+
+  def admin_user
+    if current_user.id != 1
+      redirect_to root_url
+    end  
+  end  
 end

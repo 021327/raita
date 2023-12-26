@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_12_22_053837) do
+ActiveRecord::Schema.define(version: 2023_12_26_025152) do
 
   create_table "events", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "location"
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 2023_12_22_053837) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "participants", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "event_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_participants_on_event_id"
+    t.index ["user_id"], name: "index_participants_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -40,4 +49,6 @@ ActiveRecord::Schema.define(version: 2023_12_22_053837) do
   end
 
   add_foreign_key "events", "users"
+  add_foreign_key "participants", "events"
+  add_foreign_key "participants", "users"
 end
