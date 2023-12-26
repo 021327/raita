@@ -11,13 +11,12 @@ class User < ApplicationRecord
   validates :age, presence: true, numericality: { only_integer: true }, length: { maximum: 2 }
   
   has_secure_password
-  
+
   has_many :participants
-  has_many :events, through: :participants
-  
+  has_many :participant_events, through: :participants, source: :event # そのユーザーが参加するイベント一覧
   
   def participant(event)
-    self.participans.find_or_create_by(event_id: event.id)
+    self.participants.find_or_create_by(event_id: event.id)
   end
 
   def unparticipant(event)
@@ -26,6 +25,6 @@ class User < ApplicationRecord
   end
 
   def participanted?(event)
-    self.participants.include?(event)
+   self.participant_events.include?(event)
   end
 end
