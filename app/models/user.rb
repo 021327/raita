@@ -12,6 +12,7 @@ class User < ApplicationRecord
   
   has_secure_password
 
+  has_many :events
   has_many :participants
   has_many :participant_events, through: :participants, source: :event # そのユーザーが参加するイベント一覧
   
@@ -26,5 +27,10 @@ class User < ApplicationRecord
 
   def participanted?(event)
    self.participant_events.include?(event)
+  end
+  
+  def admin?
+    # ユーザーの ID が 1 であれば管理者と判定する
+    id == 1
   end
 end

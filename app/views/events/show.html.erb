@@ -16,8 +16,8 @@
 
 <% if current_user != @event.user %>
 <% if current_user.participanted?(@event) %>
-  <%= link_to '不参加', unfparticipant_event_path(event), method: :delete %>
+  <%= link_to '不参加', unparticipant_event_path(@event), method: :delete %>
 <% else %>
-  <%= link_to '参加', participant_event_path(event), method: :post %>
+  <%= link_to '参加', participant_event_path(@event), method: :post %>
 <% end %>
 <% end %> 

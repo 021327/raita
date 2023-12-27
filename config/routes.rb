@@ -21,4 +21,6 @@ Rails.application.routes.draw do
       delete 'unparticipant', to: 'participants#destroy'
     end
   end
+  
+  resources :participants, only: [:index]
 end
