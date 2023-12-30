@@ -2,7 +2,7 @@ class ParticipantsController < ApplicationController
   before_action :require_user_logged_in
   
   def index
-    @user = @curent_user
+    @user = current_user
     @events = @user.participant_events.order(created_at: :desc)
   end
 

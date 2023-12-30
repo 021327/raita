@@ -1,19 +1,18 @@
 class EventsController < ApplicationController
   before_action :require_user_logged_in
-  before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
-  
+  before_action :admin_user, only: [:new, :create, :edit, :update, :destroy, :participants]
+
   def index
   end
-  
+
   def show
     @event = Event.find(params[:id])
   end
-  
+
   def new
     @event = Event.new
   end
-  
-  
+
   def create
     @event = current_user.events.build(event_params)
     if @event.save
@@ -25,21 +24,19 @@ class EventsController < ApplicationController
       render :new
     end
   end
-  
+
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
     flash[:success] = 'イベントを削除しました。'
     redirect_to root_url
   end
-  
-  
+
   def edit
     @event = Event.find(params[:id])
   end
-  
+
   def update
-    # イベントの編集内容を更新するアクション
     @event = Event.find(params[:id])
     if @event.update(event_params)
       flash[:success] = 'イベントを更新しました。'
@@ -49,23 +46,25 @@ class EventsController < ApplicationController
       render :edit
     end
   end
-  
+
+  def participants
+    @event = Event.find(params[:id])
+    @participants = @event.participants
+  end
+
   private
 
   def event_params
     params.require(:event).permit(:location, :date, :start_time, :end_time, :mensprice, :womansprice, :mensmax_participants, :womansmax_participants, :deadline_time, :memo)
   end
-  
+
   def correct_user
     @event = current_user.events.find_by(id: params[:id])
-    unless @event
-      redirect_to root_url
-    end
+    redirect_to root_url unless @event
   end
 
   def admin_user
-    if current_user.id != 1
-      redirect_to root_url
-    end  
-  end  
+    redirect_to root_url unless current_user.id == 1
+  end
 end
+

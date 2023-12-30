@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     member do
       post 'participant', to: 'participants#create'
       delete 'unparticipant', to: 'participants#destroy'
+      get 'participants', to: 'events#participants'
     end
   end
   
