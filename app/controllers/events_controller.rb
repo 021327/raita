@@ -2,9 +2,7 @@ class EventsController < ApplicationController
   before_action :require_user_logged_in
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy, :participants]
 
-  def index
-  end
-
+ 
   def show
     @event = Event.find(params[:id])
     # 男性の参加者一覧
@@ -61,11 +59,6 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:location, :date, :start_time, :end_time, :mensprice, :womansprice, :mensmax_participants, :womansmax_participants, :deadline_time, :memo)
-  end
-
-  def correct_user
-    @event = current_user.events.find_by(id: params[:id])
-    redirect_to root_url unless @event
   end
 
   def admin_user

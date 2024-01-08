@@ -18,14 +18,6 @@ class UsersController < ApplicationController
       flash.now[:danger] = 'ユーザの登録に失敗しました。'
       render :new
     end
-    
-  def participants
-    @user = User.find(params[:id])
-    @pagy, @events = pagy(@user.participant_events)
-    counts(@user)
-  end
-    
-    
   end
   
   

@@ -1,22 +1,25 @@
 <h1>参加するイベント一覧</h1>
-
 <% if @events.any? %>
-  <ul>
+  <div class="row">
     <% @events.each do |event| %>
-      <li>
-       <p>location: <%= event.location %></p>
-       <p>Date: <%= event.date %></p>
-       <p>Start Time: <%= event.start_time %></p>
-       <p>End Time: <%= event.end_time %></p>
-       <p>Mens Price: ¥<%= event.mensprice %></p>
-       <p>Womens Price: ¥<%= event.womansprice %></p>
-       <p>Mens Max Participants: <%= event.mensmax_participants %></p>
-       <p>Womens Max Participants: <%= event.womansmax_participants %></p>
-       <p>Reservation Deadline: <%= event.deadline_time %></p>
-       <p>Memo: <%= event.memo %></p>
-      </li>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <p><strong>Location:</strong> <%= event.location %></p>
+            <p><strong>Date:</strong> <%= event.date %></p>
+            <p><strong>Start Time:</strong> <%= event.start_time %></p>
+            <p><strong>End Time:</strong> <%= event.end_time %></p>
+            <p><strong>Mens Price:</strong> ¥<%= event.mensprice %></p>
+            <p><strong>Womens Price:</strong> ¥<%= event.womansprice %></p>
+            <p><strong>Mens Max Participants:</strong> <%= event.mensmax_participants %></p>
+            <p><strong>Womens Max Participants:</strong> <%= event.womansmax_participants %></p>
+            <p><strong>Reservation Deadline:</strong> <%= event.deadline_time %></p>
+            <p><strong>Memo:</strong> <%= event.memo %></p>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </ul>
+  </div>
 <% else %>
   <p>まだ参加しているイベントはありません。</p>
 <% end %>
