@@ -8,7 +8,7 @@ class User < ApplicationRecord
   
   validates :gender, inclusion: { in: GENDERS, message: "must be one of #{GENDERS.join(', ')}" }
   
-  validates :age, presence: true, numericality: { only_integer: true }, length: { maximum: 2 }
+  validates :age, presence: true, numericality: { greater_than_or_equal_to: 0, only_integer: true }, length: { maximum: 2 }
   
   has_secure_password
 

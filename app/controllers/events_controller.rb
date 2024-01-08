@@ -50,11 +50,6 @@ class EventsController < ApplicationController
     end
   end
 
-  def participants
-    @event = Event.find(params[:id])
-    @participants = @event.participants
-  end
-
   private
 
   def event_params

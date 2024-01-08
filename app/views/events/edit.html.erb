@@ -1,59 +1,57 @@
-
-<h1>Edit Event</h1>
+<h1>イベントを編集</h1>
 
 <%= form_with(model: @event) do |form| %>
   <div class="field">
-    <%= form.label :location %>
+    <%= form.label :location, "場所" %>
     <%= form.text_field :location %>
   </div>
 
   <div class="field">
-    <%= form.label :date %>
+    <%= form.label :date, "日付" %>
     <%= form.date_field :date %>
   </div>
 
   <div class="field">
-    <%= form.label :start_time %>
+    <%= form.label :start_time, "開始時間" %>
     <%= form.time_field :start_time %>
   </div>
 
   <div class="field">
-    <%= form.label :end_time %>
+    <%= form.label :end_time, "終了時間" %>
     <%= form.time_field :end_time %>
   </div>
 
   <div class="field">
-    <%= form.label :mensprice %>
+    <%= form.label :mensprice, "男性料金" %>
     <%= form.number_field :mensprice %>
   </div>
 
   <div class="field">
-    <%= form.label :womansprice %>
+    <%= form.label :womansprice, "女性料金" %>
     <%= form.number_field :womansprice %>
   </div>
 
   <div class="field">
-    <%= form.label :mensmax_participants %>
+    <%= form.label :mensmax_participants, "男性最大参加人数" %>
     <%= form.number_field :mensmax_participants %>
   </div>
 
   <div class="field">
-    <%= form.label :womansmax_participants %>
+    <%= form.label :womansmax_participants, "女性最大参加人数" %>
     <%= form.number_field :womansmax_participants %>
   </div>
 
   <div class="field">
-    <%= form.label :deadline_time %>
+    <%= form.label :deadline_time, "申し込み締め切り時間" %>
     <%= form.datetime_field :deadline_time %>
   </div>
 
   <div class="field">
-    <%= form.label :memo %>
+    <%= form.label :memo, "コメント" %>
     <%= form.text_area :memo %>
   </div>
 
   <div class="actions">
-    <%= form.submit 'Update Event' %>
+    <%= form.submit 'イベントを更新' %>
   </div>
 <% end %>
-

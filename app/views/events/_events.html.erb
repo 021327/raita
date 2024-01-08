@@ -4,16 +4,16 @@
       <div class="col-md-4 mb-4">
         <div class="card">
           <div class="card-body">
-            <p class="card-text">Location: <%= event.location %></p>
-            <p class="card-text">Date: <%= event.date %></p>
-            <p class="card-text">Start Time: <%= event.start_time %></p>
-            <p class="card-text">End Time: <%= event.end_time %></p>
-            <p class="card-text">Mens Price: ¥<%= event.mensprice %></p>
-            <p class="card-text">Womens Price: ¥<%= event.womansprice %></p>
-            <p class="card-text">Mens Max Participants: <%= event.mensmax_participants %></p>
-            <p class="card-text">Womens Max Participants: <%= event.womansmax_participants %></p>
-            <p class="card-text">Reservation Deadline: <%= event.deadline_time %></p>
-            <p class="card-text">Memo: <%= event.memo %></p>
+            <p class="card-text">場所: <%= event.location %></p>
+            <p class="card-text">日付: <%= event.date %></p>
+            <p class="card-text">開始時刻: <%= event.start_time %></p>
+            <p class="card-text">終了時刻: <%= event.end_time %></p>
+            <p class="card-text">男性料金: ¥<%= event.mensprice %></p>
+            <p class="card-text">女性料金: ¥<%= event.womansprice %></p>
+            <p class="card-text">男性最大参加者数: <%= event.mensmax_participants %></p>
+            <p class="card-text">女性最大参加者数: <%= event.womansmax_participants %></p>
+            <p class="card-text">予約締切時時刻: <%= event.deadline_time %></p>
+            <p class="card-text">: <%= event.memo %></p>
             <%= link_to 'イベント詳細', event_path(event), class: 'btn btn-primary' %>
           </div>
         </div>
