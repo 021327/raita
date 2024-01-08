@@ -7,6 +7,10 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    # 男性の参加者一覧
+    @event_participants_mens = @event.event_participants.where('gender':  'Mens')
+    # 女性の参加者一覧
+    @event_participants_womens = @event.event_participants.where('gender':  'Womens')
   end
 
   def new
@@ -27,6 +31,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event = Event.find(params[:id])
+    @event.participants.destroy_all
     @event.destroy
     flash[:success] = 'イベントを削除しました。'
     redirect_to root_url

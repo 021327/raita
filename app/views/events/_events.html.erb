@@ -1,19 +1,24 @@
 <% if events.any? %>
-  <ul class="list-unstyled mt-2">
+  <div class="row mt-2">
     <% events.each do |event| %>
-     <li>
-      <p>location: <%= event.location %></p>
-      <p>Date: <%= event.date %></p>
-      <p>Start Time: <%= event.start_time %></p>
-      <p>End Time: <%= event.end_time %></p>
-      <p>Mens Price: ¥<%= event.mensprice %></p>
-      <p>Womens Price: ¥<%= event.womansprice %></p>
-      <p>Mens Max Participants: <%= event.mensmax_participants %></p>
-      <p>Womens Max Participants: <%= event.womansmax_participants %></p>
-      <p>Reservation Deadline: <%= event.deadline_time %></p>
-      <p>Memo: <%= event.memo %></p>
-     </li>
-     <%= link_to 'イベント詳細', event_path(event), class: 'btn btn-primary' %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <p class="card-text">Location: <%= event.location %></p>
+            <p class="card-text">Date: <%= event.date %></p>
+            <p class="card-text">Start Time: <%= event.start_time %></p>
+            <p class="card-text">End Time: <%= event.end_time %></p>
+            <p class="card-text">Mens Price: ¥<%= event.mensprice %></p>
+            <p class="card-text">Womens Price: ¥<%= event.womansprice %></p>
+            <p class="card-text">Mens Max Participants: <%= event.mensmax_participants %></p>
+            <p class="card-text">Womens Max Participants: <%= event.womansmax_participants %></p>
+            <p class="card-text">Reservation Deadline: <%= event.deadline_time %></p>
+            <p class="card-text">Memo: <%= event.memo %></p>
+            <%= link_to 'イベント詳細', event_path(event), class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </ul>
+  </div>
 <% end %>
+

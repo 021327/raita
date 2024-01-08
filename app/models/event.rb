@@ -13,7 +13,8 @@ class Event < ApplicationRecord
   validates :womansprice, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :memo, length: { maximum: 255 }
   
-  has_many :participants
-  has_many :users, through: :participants
+  has_many :participants, dependent: :destroy
+  # has_many :users, through: :participants　
+  has_many :event_participants, through: :participants, source: :user # そのイベントに参加するユーザー一覧
   
 end

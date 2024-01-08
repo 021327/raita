@@ -4,31 +4,49 @@
 <p><strong>End Time:</strong> <%= @event.end_time %></p>
 <p><strong>Mens Price:</strong> <%= @event.mensprice %></p>
 <p><strong>Womens Price:</strong> <%= @event.womansprice %></p>
-<p><strong>Mens Max Participants:</strong> <%= @event.mensmax_participants %></p>
-<p><strong>Womens Max Participants:</strong> <%= @event.womansmax_participants %></p>
+<p><strong>Mens Max Participants:</strong> <%= @event.mensmax_participants %>: 現在の参加予定者数 <%= @event_participants_mens.count %>人</p>
+<p><strong>Womens Max Participants:</strong> <%= @event.womansmax_participants %>: 現在の参加予定者数 <%= @event_participants_womens.count %>人</p>
 <p><strong>Deadline Time:</strong> <%= @event.deadline_time %></p>
 <p><strong>Memo:</strong> <%= @event.memo %></p>
 
 <% if current_user == @event.user  %>
   <%= link_to 'Edit Event', edit_event_path(@event), class: 'btn btn-primary' %>
   <%= link_to 'Delete Event', @event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-<h2>参加者一覧</h2>
-<ul>
-  <% if @participants.present? %>
-    <% @participants.each do |participant| %>
-      <li><%= participant.user.name %></li>
+
+  <h2 class="mt-2">参加者一覧</h2>
+  
+  <h3>男性</h3>
+  <ul>
+    <% if @event_participants_mens.present? %>
+      <% @event_participants_mens.each do |user| %>
+        <li><%= user.name %></li>
+      <% end %>
+    <% else %>
+      <li>参加者はいません</li>
     <% end %>
-  <% else %>
-    <li>参加者はいません</li>
-  <% end %>
-</ul>
+  </ul>
+  
+  <h3>女性</h3>
+  <ul>
+    <% if @event_participants_womens.present? %>
+      <% @event_participants_womens.each do |user| %>
+        <li><%= user.name %></li>
+      <% end %>
+    <% else %>
+      <li>参加者はいません</li>
+    <% end %>
+  </ul>
 
-<% end %>
+<% else %>
 
-<% if current_user != @event.user %>
   <% if current_user.participanted?(@event) %>
     <%= link_to '不参加', unparticipant_event_path(@event), method: :delete %>
-  <% else %>
-    <%= link_to '参加', participant_event_path(@event), method: :post %>
+  <% else %>  
+    <% if can_participate?(@event) %>
+      <%= link_to '参加', participant_event_path(@event), method: :post %>
+    <% else %>
+      <p>申し込み期限を過ぎているか、現在<%= current_user.gender == 'Mens' ? '男性' : '女性' %>は満員となっていますので申し込みできません。</p>
+    <% end %>
   <% end %>
+
 <% end %>
