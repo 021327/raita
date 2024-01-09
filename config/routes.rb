@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       get :participants
     end
   end
-
+  
   resources :events, only: [:show, :new, :create, :edit, :update, :destroy] do
     member do
       post 'participant', to: 'participants#create'
