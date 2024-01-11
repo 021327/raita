@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # サインアップ関連のルーティング
   get 'signup', to: 'users#new'
 
-   #resources :users, except: [:edit, :show, :update, :destroy] do
+  #resources :users, except: [:edit, :show, :update, :destroy] do
   #  member do
   #    get :participants
   #  end
