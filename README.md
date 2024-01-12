@@ -62,6 +62,8 @@ RAITA は以下の機能を提供しています。
 
 https://raita-fujitaka.fly.dev/
 
+-メールアドレス(ryouta.fujitaka@icloud.com)
+-パスワード(Fuji0213)
 ## エピソード
 
 実装において特に工夫した点は２つあります。
